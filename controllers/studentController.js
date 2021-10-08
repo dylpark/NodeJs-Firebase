@@ -48,10 +48,26 @@ const getAllStudents = async (req, res, next) => {
     }
 }
 
+const getStudent = async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        const student = await firestore.collection('students').doc(id);
+        const data = await student.get();
+        if(!data.exists) {
+            res.status(404).send('Invalid Student Id');
+        } else {
+            res.send(data.data())
+        }
+
+    } catch {
+        res.status(400).send(error.message)
+    }
+}
+
 module.exports = {
     addStudent,
     getAllStudents,
-    // getStudent,
+    getStudent,
     // updateStudent,
     // deleteStudent
 }

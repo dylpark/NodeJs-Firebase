@@ -2,12 +2,12 @@
 // Node.js w/Firebase Tutorial.
 
 class Student {
-    constructor(id, firstName, lastName, nextOfKin, classEnrolled,
+    constructor(id, firstName, lastName, fatherName, classEnrolled,
         age, phoneNumber, subject, year, semester, status ) {
             this.id = id;
             this.firstName = firstName;
             this.lastName = lastName;
-            this.nextOfKin = nextOfKin;
+            this.fatherName = fatherName;
             this.classEnrolled = classEnrolled;
             this.age = age;
             this.phoneNumber = phoneNumber;

@@ -13,6 +13,7 @@ const router = express.Router();
 
 router.post('/student', addStudent);
 router.get('/students', getAllStudents);
+router.get('student/:id', getStudent)
 
 module.exports = {
     routes: router
