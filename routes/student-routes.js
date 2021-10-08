@@ -12,6 +12,7 @@ const {addStudent,
 const router = express.Router();
 
 router.post('/student', addStudent);
+router.get('/students', getAllStudents);
 
 module.exports = {
     routes: router

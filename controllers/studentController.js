@@ -17,6 +17,41 @@ const addStudent = async (req, res, next) => {
     }
 }
 
+const getAllStudents = async (req, res, next) => {
+    try {
+        const students = await firestore.collection('students');
+        const data = await students.get();
+        const studentsArray = [];
+        if(data.empty) {
+            res.status(404).send('No student record found');
+        }else {
+            data.forEach(doc => {
+                const student = new Student(
+                    doc.id,
+                    doc.data().firstName,
+                    doc.data().lastName,
+                    doc.data().fatherName,
+                    doc.data().class,
+                    doc.data().age,
+                    doc.data().phoneNumber,
+                    doc.data().subject,
+                    doc.data().year,
+                    doc.data().semester,
+                    doc.data().status
+                );
+                studentsArray.push(student);
+            });
+            res.send(studentsArray);
+        }
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+
 module.exports = {
-    addStudent
+    addStudent,
+    getAllStudents,
+    // getStudent,
+    // updateStudent,
+    // deleteStudent
 }
