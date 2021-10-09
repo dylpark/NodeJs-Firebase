@@ -30,7 +30,7 @@ const getAllStudents = async (req, res, next) => {
                     doc.id,
                     doc.data().firstName,
                     doc.data().lastName,
-                    doc.data().fatherName,
+                    doc.data().nextOfKin,
                     doc.data().class,
                     doc.data().age,
                     doc.data().phoneNumber,
@@ -64,10 +64,32 @@ const getStudent = async (req, res, next) => {
     }
 }
 
+const updateStudent = async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        const data = req.body;
+        const student =  await firestore.collection('students').doc(id);
+        await student.update(data);
+        res.send('Student record updated successfuly');        
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+
+const deleteStudent = async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        await firestore.collection('students').doc(id).delete();
+        res.send('Record deleted successfuly');
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+
 module.exports = {
     addStudent,
     getAllStudents,
     getStudent,
-    // updateStudent,
-    // deleteStudent
+    updateStudent,
+    deleteStudent
 }
