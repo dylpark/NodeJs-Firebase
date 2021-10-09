@@ -1,2 +1,2 @@
 # NodeJs-Firebase
- Node.js & Express.js with Firebase/Firestore - Full CRUD Tutorial.
+ Student Directory made with Node.js, Express.js, and Firebase/Firestore - Learning Full CRUD Basics of Firestore.
